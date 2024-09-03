@@ -4,7 +4,18 @@
 <script src="https://cdn.jsdelivr.net/npm/@observablehq/plot@0.6"></script>
 <script type="module">
 
-const plot = Plot.rectY({length: 10000}, Plot.binX({y: "count"}, {x: Math.random})).plot();
+const plot = Plot.plot({
+  aspectRatio: 1,
+  inset: 10,
+  grid: true,
+  marks: [
+    Plot.text(d3.range(151).map((i) => [
+      Math.sqrt(i) * Math.sin(i / 10),
+      Math.sqrt(i) * Math.cos(i / 10)
+    ]))
+  ]
+})
+
 const div = document.querySelector("#myplot");
 div.append(plot);
 
